@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct SettingsView: View {
+  @ObservedObject var viewModel: AppManageViewModel
+  
   var body: some View {
     TabView {
-//      BackgroundManageView()
-//      .padding()
-//      .tabItem {
-//        Label("Background", systemImage: "photo.fill")
-//      }
-
-      AppManageView()
+      BackgroundManageView()
+      .padding()
+      .tabItem {
+        Label("Background", systemImage: "photo.fill")
+      }
+      
+      AppManageView(viewModel: viewModel)
       .tabItem {
         Label("Apps", systemImage: "plus.app.fill")
       }
@@ -25,6 +27,6 @@ struct SettingsView: View {
   }
 }
 
-#Preview {
-  SettingsView()
-}
+//#Preview {
+//  SettingsView()
+//}

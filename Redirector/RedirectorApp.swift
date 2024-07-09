@@ -9,18 +9,19 @@ import SwiftUI
 
 @main
 struct RedirectorApp: App {
-  let persistenceController = PersistenceController.shared
-  @StateObject private var viewModel = TestViewModel(viewContext: PersistenceController.shared.container.viewContext)
+  let persistenceContainer = CoreDataManager.shared.persistentContainer
+  @StateObject private var viewModel = AppManageViewModel(appInfoService: AppInfoService.shared)
 
   var body: some Scene {
     WindowGroup {
-      TestView(viewModel: viewModel)
+//      TestView(viewModel: viewModel)
 //      SettingsView()
 //      ContentView()
-        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      Text("ContentView")
+        .environment(\.managedObjectContext, persistenceContainer.viewContext)
     }
     Settings {
-      SettingsView()
+      SettingsView(viewModel: viewModel)
     }
   }
 }
